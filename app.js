@@ -1,6 +1,7 @@
 const fetch = require('node-fetch')
 const cheerio = require('cheerio')
 const url = 'https://stockx.com/new-releases/sneakers'
+const fs = require('fs')
 
 
 const stockx = async() => {
@@ -10,9 +11,16 @@ const stockx = async() => {
         }
     }); 
     const result = await response.text();
+
+
+    // fs.writeFile('stockx.html', result, (err) => {
+    //     if (err) throw err;
+    //     console.log('The file has been saved!')
+    // })
+
     
     const $ = cheerio.load(result)
-    console.log($('.market-dir-down-arrow arrow'))
+    console.log($('p').text())
 
 
 }
